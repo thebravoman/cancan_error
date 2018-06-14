@@ -48,3 +48,25 @@ Here you can see a log of CACHE errors.
 This project is a very simple example, but in a real life scenario, especially when the episodes and materials have some logic and globalize installed then hundreds of queries are output to the console and it takes about a minute.
 
 This means that if there is and error on the server durring development we must wait about a minute which is unproductive.
+
+
+The issue occurs probably because of 
+
+````
+    can :access, Episode, Episode.all do |model_object|
+    end
+    can :access, Material, Material.all do |model_object|
+    end
+
+````
+
+If this lines are changed with
+````
+    can :access, Episode do |model_object|
+    end
+    can :access, Material do |model_object|
+    end
+
+````
+
+The issue will no longer occur
